@@ -11,7 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>How to Add Google Map in Laravel? - ItSolutionStuff.com</title>
-
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
     <style type="text/css">
@@ -88,8 +87,16 @@
                 lng: 13.228483
             };
             const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 12,
+                zoom: 14,
                 center: home,
+                // mapTypeId:google.maps.MapTypeId.TERRAIN  //map type
+                //     mapTypeControl: true,
+                //     mapTypeControlOptions: {
+                //       style: google.maps.MapTypeControlStyle.DROPDOWN_MENU, mapTypeIds: [
+                //          google.maps.MapTypeId.ROADMAP,
+                //          google.maps.MapTypeId.TERRAIN
+                //       ]
+                //    },
             });
             // This event listener calls addMarker() when the map is clicked.
             google.maps.event.addListener(map, "click", (event) => {
@@ -108,9 +115,9 @@
 
             // Add the marker at the clicked location, and add the next-available label
             // from the array of alphabetical characters.
-            var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-            const image =
-                "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+            // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+            // const image =
+            //     "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
             var marker = new google.maps.Marker({
                 position: location,
                 // icon: iconBase + 'parking_lot_maps.png',
@@ -120,11 +127,28 @@
                     color: "blue"
                 },
                 map: map,
+                //draggable:true, //قابله لسحب
+                //    icon:'/scripts/img/logo-footer.png'
+                // animation:google.maps.Animation.Drop
             });
+            //for window information 
+            const infoWindow = new google.maps.InfoWindow({
+                content: "",
+                disableAutoPan: true,
+            });
+
+            marker.addListener("click", () => {
+
+                infoWindow.setContent(marker.label.text);
+                infoWindow.open(map, marker);
+                //
+                // map.setZoom(19);
+                // map.setCenter(marker.getPosition());
+            });
+
             var lat = marker.getPosition().lat();
             var lng = marker.getPosition().lng();
             console.log(lat);
-            console.log(location.lng);
             $("#marketName").val("");
         }
 
@@ -173,7 +197,7 @@
 
 
 
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&callback=initMap"></script>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&region=ar&callback=initMap"></script>
 
 
 
