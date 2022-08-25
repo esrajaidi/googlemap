@@ -18,3 +18,8 @@ Route::get('/', function () {
 });
 
 Route::get('google', [GoogleController::class, 'index']);
+
+Route::get('test', function () {
+    event(new App\Events\StatusLiked('Someone'));
+    return "Event has been sent!";
+});
