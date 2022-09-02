@@ -31,4 +31,16 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'firebase' => [
+        'api_key' => 'AIzaSyAi0qh4lxpSKQ-DSDrTb5RPar8G6gm_FbM',
+        'auth_domain' => 'crud-34327.firebaseapp.com',
+        'database_url' => 'https://crud-34327-default-rtdb.firebaseio.com',
+        'project_id' => 'crud-34327',
+        'storage_bucket' => 'crud-34327.appspot.com',
+        'messaging_sender_id' => '19390201175',
+        'app_id' => '1:19390201175:web:4e74d17e679d0770cfd212',
+        'measurement_id' => 'G-JBMTSSW2G6',
+        
+    ],
+
 ];

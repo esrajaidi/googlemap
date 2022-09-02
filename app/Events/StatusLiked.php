@@ -5,12 +5,10 @@ namespace App\Events;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-
-class StatusLiked
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+class StatusLiked implements ShouldBroadcast
 {
 
     use Dispatchable, InteractsWithSockets, SerializesModels;
@@ -28,6 +26,7 @@ class StatusLiked
     {
         $this->username = $username;
         $this->message  = "{$username} liked your status";
+
     }
 
     /**
@@ -37,6 +36,7 @@ class StatusLiked
      */
     public function broadcastOn()
     {
+
         return ['status-liked'];
     }
 }
